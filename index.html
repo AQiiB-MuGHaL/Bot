@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZAMI-MD • Next-Gen Session Pairing</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Share+Tech+Mono&family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--pink:#ff3fc8;--purple:#a855f7;--cyan:#22d3ee}
+body{font-family:'Poppins',sans-serif;background:#08040d;color:#fff;min-height:100vh;
+  padding:20px 14px 50px;overflow-x:hidden;position:relative}
+body::before{content:"";position:fixed;inset:0;z-index:-2;
+  background:radial-gradient(circle at 15% 8%,rgba(150,20,110,.35),transparent 45%),
+             radial-gradient(circle at 85% 85%,rgba(80,25,150,.35),transparent 45%),
+             linear-gradient(#0e0617,#08040d)}
+body::after{content:"";position:fixed;inset:0;z-index:-1;
+  background-image:linear-gradient(rgba(255,255,255,.028) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(255,255,255,.028) 1px,transparent 1px);
+  background-size:70px 70px}
+.stars{position:fixed;inset:0;z-index:-1;pointer-events:none}
+.star{position:absolute;width:3px;height:3px;border-radius:50%;background:#ff7fe0;opacity:.5;
+  animation:float linear infinite}
+@keyframes float{from{transform:translateY(0)}to{transform:translateY(-110vh)}}
+.wrap{max-width:400px;margin:0 auto}
+.topbar{display:flex;justify-content:flex-end;margin-bottom:16px;min-height:40px}
+.home-btn{display:inline-flex;align-items:center;gap:8px;background:rgba(32,18,44,.85);
+  border:1px solid rgba(255,255,255,.08);padding:8px 16px;border-radius:40px;color:#fff;
+  text-decoration:none;font-weight:600;font-size:13px;cursor:pointer}
+.home-btn i{color:var(--pink)}
+.card{position:relative;overflow:hidden;border-radius:20px;padding:22px 18px 18px;
+  background:linear-gradient(160deg,rgba(30,15,42,.95),rgba(15,8,23,.96));
+  border:1px solid rgba(255,255,255,.07);box-shadow:0 30px 70px rgba(0,0,0,.65)}
+.ribbon{position:absolute;top:13px;right:-36px;width:130px;transform:rotate(45deg);
+  background:linear-gradient(90deg,#b23bff,#ff2bb0);color:#fff;text-align:center;
+  font-weight:800;font-size:10px;letter-spacing:2px;padding:5px 0;
+  box-shadow:0 4px 14px rgba(255,43,176,.4)}
+.head{display:flex;align-items:center;gap:18px}
+.ava-wrap{position:relative;width:74px;height:74px;flex:0 0 auto}
+.ava-wrap::before{content:"";position:absolute;inset:-2px;border-radius:18px;
+  background:conic-gradient(#ff2bd1,#8a2be2,#00e5ff,#ff2bd1);filter:blur(5px);opacity:.85;
+  animation:spin 4s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.ava{position:relative;width:74px;height:74px;border-radius:16px;border:2px solid var(--pink);
+  object-fit:cover;background:#1a0f22;box-shadow:0 0 8px rgba(255,45,200,.45)}
+.brand{font-family:'Orbitron';font-size:24px;font-weight:900;letter-spacing:1px;
+  background:linear-gradient(90deg,#ff2bd1,#ff9a2b,#ffe74c,#2bff88,#22d3ee,#a855f7,#ff2bd1);
+  background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;
+  animation:rain 16s linear infinite}
+.sub{font-family:'Share Tech Mono';letter-spacing:2px;color:#9b93a8;font-size:11px;
+  display:flex;align-items:center;gap:6px;margin-top:3px}
+.dot{width:8px;height:8px;border-radius:50%;background:#18c964;box-shadow:0 0 6px #18c964;flex:0 0 auto}
+.status{display:inline-flex;align-items:center;gap:8px;margin-top:6px;border:1px solid rgba(255,63,200,.6);
+  border-radius:30px;padding:7px 15px;color:#ff8ee4;font-weight:700;letter-spacing:1.5px;font-size:11px;
+  text-transform:uppercase}
+h1{font-family:'Orbitron';font-size:30px;margin-top:16px;line-height:1.1;letter-spacing:1px;
+  background:linear-gradient(90deg,#fff,#ffb9ec);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero h1{background:linear-gradient(90deg,#a855f7,#5b9dff);-webkit-background-clip:text;
+  background-clip:text;color:transparent;animation:none;font-size:38px}
+.hero{text-align:center}
+.hero .chips,.hero .sec-title{justify-content:center}
+.tagline{color:#ff8ee4;margin-top:8px;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase}
+.tagline i{color:var(--cyan)}
+.desc{color:#9b93a8;margin-top:10px;font-size:13px;line-height:1.6}
+.desc i{color:var(--purple)}
+hr{border:none;border-top:1px dashed rgba(255,79,216,.35);margin:22px 0}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.chip{border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.03);border-radius:30px;
+  padding:6px 13px;color:#ddd6e6;font-size:12px}
+.chip i{color:var(--pink);margin-right:5px}
+.chip-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+.chip-grid .chip{text-align:center}
+.cta{display:grid;gap:10px;margin-top:18px}
+.btn{border:none;cursor:pointer;text-decoration:none;font-size:15px;font-weight:700;padding:12px;
+  border-radius:12px;display:flex;align-items:center;justify-content:center;gap:9px;transition:.2s;color:#fff}
+.btn:active{transform:scale(.98)}
+.btn-pink{background:linear-gradient(90deg,#ff2bb0,#b23bff);box-shadow:0 12px 38px rgba(255,43,176,.42)}
+.btn-ghost{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12)}
+.sec-title{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:22px;
+  color:#ff8ee4;font-weight:700;letter-spacing:2px;font-size:11px;text-transform:uppercase;
+  border:1px solid rgba(255,63,200,.4);border-radius:20px;padding:6px 14px;width:fit-content;margin-left:auto;margin-right:auto}
+.links{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:12px}
+.link{display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;color:#eee;
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:11px;
+  padding:10px;font-weight:600;font-size:13px;transition:.2s}
+.link:hover{border-color:var(--pink);box-shadow:0 0 14px rgba(255,63,200,.3)}
+.link i{color:var(--pink);font-size:15px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:18px;
+  border-top:1px solid rgba(255,255,255,.07);padding-top:14px;text-align:center}
+.stats b{font-family:'Orbitron';font-size:15px;color:#fff;display:block}
+.stats b span{color:var(--pink)}
+.stats small{color:#8d8598;font-size:10px}
+.field{display:flex;align-items:center;gap:10px;background:rgba(10,5,16,.8);
+  border:1px solid rgba(255,255,255,.07);border-radius:13px;padding:12px 15px}
+.field i{color:var(--pink);font-size:15px}
+.field input{flex:1;background:none;border:none;outline:none;color:#fff;font-size:15px;letter-spacing:1px}
+.field input::placeholder{color:#6d6478}
+.code-box{display:none;margin-top:20px;text-align:center;background:rgba(10,5,16,.85);
+  border:1px dashed var(--pink);border-radius:18px;padding:20px;color:#9b93a8}
+.code-box b{font-family:'Orbitron';font-size:21px;letter-spacing:4px;color:#ff8ee4;display:block;margin-top:6px}
+.copy{margin-top:12px;background:none;border:1px solid var(--pink);color:#ff8ee4;border-radius:20px;
+  padding:7px 16px;cursor:pointer;font-size:13px}
+.qrwrap{display:none;margin-top:20px;text-align:center}
+.qrwrap img{width:210px;border-radius:14px;border:3px solid var(--pink);box-shadow:0 0 25px rgba(255,63,200,.5)}
+.divider{display:flex;align-items:center;gap:14px;margin:26px 0 6px}
+.divider .ln{flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(255,63,200,.55),transparent)}
+.rainbow{font-family:'Dancing Script',cursive;font-size:30px;font-weight:700;letter-spacing:2px;
+  background:linear-gradient(90deg,#ff2bd1,#ff9a2b,#ffe74c,#2bff88,#22d3ee,#a855f7,#ff2bd1);
+  background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;
+  animation:rain 16s linear infinite;line-height:1.2}
+@keyframes rain{to{background-position:300% 0}}
+.foot{text-align:center;margin-top:28px;color:#8d8598;font-size:14px}
+.foot b{color:var(--pink)}
+.view{display:none;animation:fade .35s ease}
+.view.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div class="stars" id="stars"></div>
+
+<div class="wrap">
+  <div class="topbar"><a class="home-btn" id="homeBtn" onclick="go('home')" style="visibility:hidden"><i class="fa-solid fa-arrow-left"></i> Home</a></div>
+
+  <!-- ══════ HOME ══════ -->
+  <div class="view active" id="home">
+    <div class="card hero">
+      <div class="ribbon">PREMIUM</div>
+
+      <div class="status"><span class="dot"></span>Session Server Online</div>
+
+      <h1>ZAMI-MD</h1>
+      <p class="tagline"><i class="fa-solid fa-circle-check"></i> Seamless &amp; Secure</p>
+      <p class="desc" style="max-width:270px;margin-left:auto;margin-right:auto"><i class="fa-solid fa-gem" style="color:#f6b21b"></i> Advanced WhatsApp bot session<br>management — pair with code<br>or scan QR instantly.</p>
+
+      <div class="chip-grid">
+        <span class="chip"><i class="fa-solid fa-rotate"></i>Instant Sync</span>
+        <span class="chip"><i class="fa-solid fa-shield-halved"></i>Encrypted</span>
+      </div>
+      <div class="chip-grid" style="margin-top:14px">
+        <span class="chip"><i class="fa-solid fa-mobile-screen"></i>Multi-Device</span>
+        <span class="chip"><i class="fa-solid fa-clock"></i>24/7 Active</span>
+      </div>
+      <div class="chip-grid" style="margin-top:14px;grid-template-columns:1fr;max-width:60%;margin-left:auto;margin-right:auto">
+        <span class="chip"><i class="fa-solid fa-infinity"></i>Free Forever</span>
+      </div>
+
+      <div class="cta">
+        <a class="btn btn-pink" onclick="go('pair')"><i class="fa-solid fa-link"></i> Get Pair Code</a>
+      </div>
+      <div class="divider"><span class="ln"></span><b class="rainbow">ZAMI</b><span class="ln"></span></div>
+
+      <div class="sec-title"><i class="fa-solid fa-share-nodes"></i> Connect With Us</div>
+      <div class="links">
+        <a class="link" href="https://github.com" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
+        <a class="link" href="https://whatsapp.com" target="_blank"><i class="fa-solid fa-bullhorn"></i> Channel</a>
+        <a class="link" href="#" target="_blank"><i class="fa-solid fa-server"></i> VPS Host</a>
+        <a class="link" href="https://chat.whatsapp.com" target="_blank"><i class="fa-brands fa-whatsapp"></i> Group</a>
+      </div>
+
+      <div class="stats">
+        <div><b>99.9<span>%</span></b><small>Uptime</small></div>
+        <div><b>1.2<span>K+</span></b><small>Sessions</small></div>
+        <div><b>5.0<span>★</span></b><small>Rating</small></div>
+        <div><b>24<span>/7</span></b><small>Support</small></div>
+      </div>
+
+      <div class="foot">👑 MADE BY <b>ZAMI</b> · © 2026 ZAM1-MD 💗</div>
+    </div>
+  </div>
+
+  <!-- ══════ PAIR ══════ -->
+  <div class="view" id="pair">
+    <div class="card">
+      <div class="ribbon">PREMIUM</div>
+      <div class="head">
+        <div class="ava-wrap"><img class="ava" id="pfp1" src="https://files.catbox.moe/c30xpp.jpg" onerror="this.src=FALLBACK" alt="ZAMI"></div>
+        <div>
+          <div class="brand">ZAMI-MD</div>
+          <div class="sub"><span class="dot"></span>PAIR SYSTEM · LIVE</div>
+        </div>
+      </div>
+      <div class="status"><span class="dot"></span>Session Server Online</div>
+      <h1>PAIR CODE</h1>
+      <p class="desc"><i class="fa-solid fa-shield-halved"></i> Secure session · ZAMI-MD</p>
+      <hr>
+      <div class="field">
+        <i class="fa-solid fa-phone"></i>
+        <input id="num" type="tel" placeholder="923XXXXXXXXX">
+      </div>
+      <div class="cta">
+        <button class="btn btn-pink" onclick="getCode()"><i class="fa-solid fa-link"></i> Get Pair Code</button>
+      </div>
+      <div class="code-box" id="box">Your Pair Code<b id="code">---------</b>
+        <button class="copy" onclick="copyCode()"><i class="fa-regular fa-copy"></i> Copy</button>
+      </div>
+      <div class="chip-grid">
+        <span class="chip"><i class="fa-solid fa-bolt"></i>Instant</span>
+        <span class="chip"><i class="fa-solid fa-shield-halved"></i>Encrypted</span>
+      </div>
+      <div class="chip-grid" style="margin-top:14px">
+        <span class="chip"><i class="fa-solid fa-key"></i>Multi-Device</span>
+        <span class="chip"><i class="fa-solid fa-infinity"></i>Free</span>
+      </div>
+      <div class="foot">👑 MADE BY <b>ZAMI</b> · © 2026 ZAM1-MD 💗</div>
+    </div>
+  </div>
+
+  <!-- ══════ QR ══════ -->
+  <div class="view" id="qr">
+    <div class="card">
+      <div class="ribbon">PREMIUM</div>
+      <div class="head">
+        <div class="ava-wrap"><img class="ava" id="pfp2" src="https://files.catbox.moe/c30xpp.jpg" onerror="this.src=FALLBACK" alt="ZAMI"></div>
+        <div>
+          <div class="brand">ZAMI-MD</div>
+          <div class="sub"><span class="dot"></span>QR SYSTEM · LIVE</div>
+        </div>
+      </div>
+      <div class="status"><span class="dot"></span>Session Server Online</div>
+      <h1>SCAN QR</h1>
+      <p class="desc"><i class="fa-solid fa-qrcode"></i> WhatsApp → Linked Devices → Link a Device</p>
+      <hr>
+      <div class="cta">
+        <button class="btn btn-pink" onclick="genQR()"><i class="fa-solid fa-rotate"></i> Generate QR</button>
+      </div>
+      <div class="qrwrap" id="qrwrap"><img id="qrimg" alt="QR"></div>
+      <div class="foot">👑 MADE BY <b>ZAMI</b> · © 2026 ZAM1-MD 💗</div>
+    </div>
+  </div>
+</div>
+
+<script>
+// dark-pink anime style fallback avatar (agar pinimg load na ho)
+const FALLBACK="data:image/svg+xml;utf8,"+encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%23villain'/></linearGradient></defs><rect width='200' height='200' fill='#2a0f33'/><circle cx='100' cy='150' r='70' fill='#5c1f52'/><circle cx='100' cy='85' r='48' fill='#7a2a63'/><path d='M40 85a60 60 0 01120 0v10c-10-25-30-35-60-35S50 70 40 95z' fill='#3d1030'/><circle cx='84' cy='90' r='6' fill='#ffd6f2'/><circle cx='118' cy='90' r='6' fill='#ffd6f2'/><path d='M92 112q9 8 18 0' stroke='#ffb3e6' stroke-width='4' fill='none' stroke-linecap='round'/></svg>`);
+
+// stars
+const s=document.getElementById('stars');
+for(let i=0;i<40;i++){const d=document.createElement('div');d.className='star';
+ d.style.left=Math.random()*100+'%';d.style.top=(100+Math.random()*40)+'%';
+ d.style.animationDuration=(9+Math.random()*16)+'s';d.style.animationDelay=(-Math.random()*20)+'s';
+ s.appendChild(d);}
+
+function go(v){
+  document.querySelectorAll('.view').forEach(e=>e.classList.remove('active'));
+  document.getElementById(v).classList.add('active');
+  document.getElementById('homeBtn').style.visibility = v==='home'?'hidden':'visible';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+// ⚙️ Backend URL — apna server chalane ke baad yahan URL daalo
+// same server par host kar rahe ho to khali "" rehne do
+const API_BASE = "";
+
+async function getCode(){
+  const n=document.getElementById('num').value.replace(/\D/g,'');
+  if(n.length<10){alert('Please enter a valid WhatsApp number (923XXXXXXXXX)');return;}
+  const box=document.getElementById('box'), out=document.getElementById('code');
+  box.style.display='block'; out.textContent='• • • •';
+  try{
+    const r=await fetch(`${API_BASE}/api/pair?number=${n}`);
+    const d=await r.json();
+    if(d.code){
+      out.textContent=d.code;
+    }else{ throw new Error(d.error||'fail'); }
+  }catch(e){
+    out.textContent='ERROR';
+    out.style.fontSize='16px';
+    alert('Server se connect nahi hua.\nServer chal raha hai? (npm start)\n\n'+(e.message||''));
+  }
+}
+function copyCode(){navigator.clipboard.writeText(document.getElementById('code').textContent);alert('Copied!');}
+function genQR(){
+  const t='ZAMI-MD-SESSION-'+Date.now();
+  document.getElementById('qrimg').src='https://api.qrserver.com/v1/create-qr-code/?size=300x300&data='+encodeURIComponent(t);
+  document.getElementById('qrwrap').style.display='block';
+}
+</script>
+</body>
+</html>
